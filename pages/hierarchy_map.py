@@ -6,7 +6,7 @@ st.title("Hierarchy map")
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel('./data/Codebook - NVivo_Project_Data_31DED23 (1) - Jan 25, 2024.xlsx')
+    df = pd.read_excel('./data/Codebook - NVivo_Project_Data_31DED23 (2) - Jan 30, 2024.xlsx')
     df = df.drop(['Folder'], axis=1)
     df['ancestor'] = df.Name.str.split('\\', expand=True)[0]
     df['parent'] = df.Name.str.split('\\', expand=True)[1]
@@ -23,7 +23,7 @@ fig = px.treemap(df, path=[px.Constant("Home"), 'ancestor', 'parent', 'child'], 
 fig.data[0].texttemplate = "<br><br><em style='font-size:75px'>%{label}</em><br>Code count (normalized by number of files): %{value}<br>Description: %{customdata[0]}"
 fig.update_traces(root_color="lightgrey")
 fig.update_layout(
-    treemapcolorway = ["cornflowerblue", "orange", "lightgrey", "darkorange", "green"],
+    treemapcolorway = ["darkgreen", "darkblue", "darkred", "teal", "saddlebrown"],
     margin = dict(t=50, l=50, r=50, b=50)
 )
 

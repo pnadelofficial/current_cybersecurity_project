@@ -6,7 +6,7 @@ st.title("Bar chart")
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel('./data/Codebook - NVivo_Project_Data_31DED23 (1) - Jan 25, 2024.xlsx')
+    df = pd.read_excel('./data/Codebook - NVivo_Project_Data_31DED23 (2) - Jan 30, 2024.xlsx')
     df = df.drop(['Folder'], axis=1)
     df['ancestor'] = df.Name.str.split('\\', expand=True)[0]
     df['parent'] = df.Name.str.split('\\', expand=True)[1]
@@ -16,11 +16,12 @@ def load_data():
     return df[~(df.child.isnull())] # must be leaf node for px
 
 color_mapping = {
-    "Liberalism":"cornflowerblue", 
-    "Constructivism":"orange", 
-    "Realism":"lightgrey", 
-    "Cyber Persistence":"darkorange", 
-    "Policy Engineering Tasks":"green"
+    "Academic Interaction":"gold",
+    "Liberalism":"darkgreen", 
+    "Constructivism":"darkblue", 
+    "Realism":"darkred", 
+    "Cyber Persistence":"saddlebrown", 
+    "Policy Engineering Tasks":"teal"
 }
 
 df = load_data()
