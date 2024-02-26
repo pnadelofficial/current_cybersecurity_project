@@ -52,3 +52,16 @@ def plot_treemap_from_ps(ps):
         margin = dict(t=50, l=50, r=50, b=50)
     ) 
     return fig
+
+def make_df_from_ps(ps):
+    results = []
+    for code in codes:
+        for root, dirs, files in os.walk(f'./data/code_docs/{code}/'):
+            for file in files:
+                if file.endswith('.docx'):
+                    tag_tup = get_number_of_codes_by_doc_and_primary_source(os.path.join(root, file), ps)
+                    if tag_tup:
+                        results.append(tag_tup)
+
+    df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs']) 
+    return df

@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import utils
 
 st.title("Bar chart")
 
@@ -36,3 +37,33 @@ fig.update_traces(marker_color=color_mapping[selected_parent])
 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)  
 
 st.plotly_chart(fig)
+
+st.header("Document level (name TBD)")
+
+doc_mapping = {
+    '2009 Cyberspace Policy Review Assuring a Trusted and R':'2009 Cyberspace Policy Review_CLEAN',
+    '2010_national_security_strategy':'2010_national_security_strategy_CLEAN',
+    '2011 DOD Strategy for Operating in Cy':'2011 DOD Strategy for Operating in Cyber_CLEAN',
+    '2011':'2011-national-military-strategy_CLEAN',
+    '2011_International_strategy_for_cyberspace':'2011_international_strategy_for_cyberspace_CLEAN',
+    'QDR as of 29JAN10 1600':'2010_QDR_CLEAN'
+}
+rev_doc_mapping = {v:k for k,v in doc_mapping.items()}
+
+choices = st.multiselect("Choose documents to compare", list(doc_mapping.values()))
+choices = [rev_doc_mapping[c] for c in choices]
+if len(choices) > 0:
+    if len(choices) < 3:
+        cols = st.columns(len(choices))
+        for i, col in enumerate(cols):
+            with col:
+                df = utils.make_df_from_ps(choices[i])
+                fig = px.bar(df, x='refs', y='child', title=doc_mapping[choices[i]], orientation='h')
+                st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    else:
+        tabs = st.tabs(choices)
+        for i, tab in enumerate(tabs):
+            with tab:
+                df = utils.make_df_from_ps(choices[i])
+                fig = px.bar(df, x='refs', y='child', title=doc_mapping[choices[i]], orientation='h')
+                st.plotly_chart(fig, theme="streamlit", use_container_width=True)

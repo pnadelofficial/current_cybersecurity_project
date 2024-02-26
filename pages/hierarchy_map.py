@@ -43,18 +43,18 @@ doc_mapping = {
 rev_doc_mapping = {v:k for k,v in doc_mapping.items()}
 
 choices = st.multiselect("Choose documents to compare", list(doc_mapping.values()))
-choices = [rev_doc_mapping[c] for c in choices]
+choices_rev = [rev_doc_mapping[c] for c in choices]
 if len(choices) > 0:
     if len(choices) < 3:
         cols = st.columns(len(choices))
         for i, col in enumerate(cols):
             with col:
-                fig = utils.plot_treemap_from_ps(choices[i])
+                fig = utils.plot_treemap_from_ps(choices_rev[i])
                 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(choices)
         for i, tab in enumerate(tabs):
             with tab:
-                fig = utils.plot_treemap_from_ps(choices[i])
+                fig = utils.plot_treemap_from_ps(choices_rev[i])
                 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
