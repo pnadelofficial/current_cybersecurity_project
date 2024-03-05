@@ -45,6 +45,7 @@ def plot_treemap_from_ps(ps):
                         results.append(tag_tup)
 
     df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs'])
+    print(df)
     fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant(ps), 'ancestor', 'parent', 'child'], values='refs')
     fig.update_traces(root_color="lightgrey")
     fig.update_layout(
