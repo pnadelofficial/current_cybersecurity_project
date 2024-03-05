@@ -50,7 +50,7 @@ if len(choices) > 0:
         for i, col in enumerate(cols):
             with col:
                 fig = utils.plot_treemap_from_ps(choices_rev[i])
-                st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True)
     else:
         tabs = st.tabs(choices)
         for i, tab in enumerate(tabs):
