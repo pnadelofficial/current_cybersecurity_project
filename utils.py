@@ -6,11 +6,11 @@ import os
 import streamlit as st
 
 codes = [
-    "Liberalism", 
-    "Constructivism", 
-    "Realism", 
-    "Cyber Persistence", 
-    "Policy Engineering Tasks"
+    "liberalism", 
+    "constructivism", 
+    "realism", 
+    "cyberpersistence", 
+    "policy_engineering_tasks"
 ]
 
 color_mapping = {
