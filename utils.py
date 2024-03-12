@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import os
 import streamlit as st
+import collections
 
 codes = [
     "liberalism", 
@@ -66,3 +67,54 @@ def make_df_from_ps(ps):
 
     df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs']) 
     return df
+
+def read_doc_collect_codes(path):
+    code = path.split('/')[-1].replace('.docx', '') 
+    doc = Document(path)
+    doc_text = '\n'.join([p.text for p in doc.paragraphs])
+    doc_names = re.findall(r'Files\\\\2011 Case Study\\\\Primary Sources_Policy_Strategies\\\\(.*) - .*', doc_text)
+    doc_refs = re.split(r'Files\\\\2011 Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)[1:]
+    docs = list(zip(doc_names, doc_refs))
+
+    doc_dict = {} 
+    for name, dr in docs:
+        refs = re.findall(r'Reference \d+ - .* Coverage\n(.*)', dr.strip())
+        doc_dict[name] = [(code, r) for r in refs]
+
+    return doc_dict
+
+@st.cache_data
+def get_pet_dict():
+    pet_dict = collections.defaultdict(list)
+    for file in os.listdir('./data/code_docs/policy_engineering_task'):
+        if file == 'implementation':
+            continue
+        path = f'./data/code_docs/policy_engineering_task/{file}'
+        _dict = read_doc_collect_codes(path)
+        for k, v in _dict.items():
+            pet_dict[k] += v
+    return pet_dict
+
+def get_ca_dict(path):
+    ca_dict = collections.defaultdict(list)
+    for file in os.listdir(path):
+        doc_path = f'{path}/{file}'
+        _dict = read_doc_collect_codes(doc_path)
+        for k, v in _dict.items():
+            ca_dict[k] += v
+    return ca_dict
+
+def get_heatmap_data(code, doc, pet_dict, ca_dict):
+    test_pet = pet_dict[doc]
+    test_lib = ca_dict[doc]
+
+    hm_data = []
+    for t in test_pet:
+        for s in test_lib:
+            if t[1] == s[1]:
+                hm_data.append((t[0], s[0])) # t[1]
+
+    hmdf = pd.DataFrame(hm_data, columns=['policy engineering task', f'{code} core assumptions'])
+    pair_counts = hmdf.groupby([f'{code} core assumptions', 'policy engineering task']).size().reset_index(name='Count')
+    heatmap_data = pair_counts.pivot(index=f'{code} core assumptions', columns='policy engineering task', values='Count').fillna(0)
+    return heatmap_data
