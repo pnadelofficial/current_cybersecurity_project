@@ -23,6 +23,17 @@ color_mapping = {
     "Policy Engineering Tasks":"teal"
 }
 
+double_codes_color_mapping = {
+    "liberalism": "greens",
+    "constructivism": "blues",
+    "realism": "rdgy",
+    "cyberpersistence":" brwnyl"
+}
+
+# code_mapping = {
+#     "liberalism": "Neoliberal Institutionalism",
+# }
+
 def get_number_of_codes_by_doc_and_primary_source(doc_path, primary_source):
     ancestor = doc_path.split('/')[-3]
     parent = doc_path.split('/')[-2]
