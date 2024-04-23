@@ -25,8 +25,6 @@ color_mapping = {
     "Policy Engineering Tasks":"teal"
 }
 
-case_study_choice = st.selectbox('Select case study', ['2011', '2015'])
-
 df = load_data()
 df['Description'] = df['Description'].fillna('No description')
 df['Description'] = df['Description'].str.wrap(40).str.replace('\n', '<br>')
