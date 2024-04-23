@@ -40,7 +40,7 @@ def get_number_of_codes_by_doc_and_primary_source(doc_path, primary_source):
     child = doc_path.split('/')[-1].replace('.docx', '')
     doc = Document(doc_path)
     doc_text = '\n'.join([p.text for p in doc.paragraphs])
-    doc_refs = re.findall(r'Files\\\\2011 Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)
+    doc_refs = re.findall(r'Files\\\\20\d{2} Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)
     for dr in doc_refs:
         if primary_source in dr:
             matches = re.findall(r'§ (\d+) references coded', dr)
@@ -83,8 +83,8 @@ def read_doc_collect_codes(path):
     code = path.split('/')[-1].replace('.docx', '') 
     doc = Document(path)
     doc_text = '\n'.join([p.text for p in doc.paragraphs])
-    doc_names = re.findall(r'Files\\\\2011 Case Study\\\\Primary Sources_Policy_Strategies\\\\(.*) - .*', doc_text)
-    doc_refs = re.split(r'Files\\\\2011 Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)[1:]
+    doc_names = re.findall(r'Files\\\\20\d{2} Case Study\\\\Primary Sources_Policy_Strategies\\\\(.*) - .*', doc_text)
+    doc_refs = re.split(r'Files\\\\20\d{2} Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)[1:]
     docs = list(zip(doc_names, doc_refs))
 
     doc_dict = {} 

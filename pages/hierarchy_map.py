@@ -38,7 +38,12 @@ doc_mapping = {
     '2011 DOD Strategy for Operating in Cy':'2011 DOD Strategy for Operating in Cyber_CLEAN',
     '2011':'2011-national-military-strategy_CLEAN',
     '2011_International_strategy_for_cyberspace':'2011_international_strategy_for_cyberspace_CLEAN',
-    'QDR as of 29JAN10 1600':'2010_QDR_CLEAN'
+    'QDR as of 29JAN10 1600':'2010_QDR_CLEAN',
+    "2015 National Security Strategy CLEAN": "2015 National Security Strategy CLEAN",
+    '2015 WH Report on Cyber Deterrence Policy Final CLEAN': '2015 WH Report on Cyber Deterrence Policy Final CLEAN',
+    '2014 Quadrennial Defense Review CLEAN': '2014 Quadrennial Defense Review CLEAN',
+    '2015 DOD Cyber Strategy CLEAN': '2015 DOD Cyber Strategy CLEAN',
+    '2015 National Military Strategy CLEAN': '2015 National Military Strategy CLEAN',
 }
 rev_doc_mapping = {v:k for k,v in doc_mapping.items()}
 
