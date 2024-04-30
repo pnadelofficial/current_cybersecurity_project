@@ -29,7 +29,7 @@ national cybersecurity guidance across three different administrations:
 | 2011 National Military Strategy | 2015 National Military Strategy | 2018 National Military Strategy | 2022 National Military |
 | 2011 DoD Cyber Strategy | 2015 DoD Cyber Strategy | 2018 DoD Cyber Strategy | 2022 DoD Cyber Strategy |   
 
-\
+&nbsp;
         
 Applying Philip Zelikow’s Policy Engineering Framework, I assess the analytic components of the
 hierarchy of U.S. security strategies from the National Security Strategy down to the Defense Department

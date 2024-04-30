@@ -5,6 +5,7 @@ import utils
 
 st.title("Bar chart")
 
+st.header('All codes by parent code')
 @st.cache_data
 def load_data():
     df = pd.read_excel('./data/Codebook - NVivo_Project_Data_FEB24 - Mar 4, 2024.xlsx')
@@ -38,7 +39,7 @@ fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
 
 st.plotly_chart(fig)
 
-st.header("Document level (name TBD)")
+st.header("Document level")
 
 doc_mapping = {
     '2009 Cyberspace Policy Review Assuring a Trusted and R':'2009 Cyberspace Policy Review_CLEAN',
@@ -55,8 +56,32 @@ doc_mapping = {
 }
 rev_doc_mapping = {v:k for k,v in doc_mapping.items()}
 
-choices = st.multiselect("Choose documents to compare", list(doc_mapping.values()))
+st.header("Top level codes by documents")
+
+choices_top_level = st.multiselect("Choose documents to compare", list(doc_mapping.values()), key=0)
+choices_top_level  = [rev_doc_mapping[c] for c in choices_top_level ]
+
+if len(choices_top_level ) > 0:
+    if len(choices_top_level) < 3:
+        cols = st.columns(len(choices_top_level ))
+        for i, col in enumerate(cols):
+            with col:
+                df = utils.make_df_from_ps_top_level(choices_top_level[i])
+                fig = px.bar(df, x='refs', y='child', title=doc_mapping[choices_top_level [i]], orientation='h')
+                st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    else:
+        tabs = st.tabs(choices_top_level)
+        for i, tab in enumerate(tabs):
+            with tab:
+                df = utils.make_df_from_ps_top_level(choices_top_level[i])
+                fig = px.bar(df, x='refs', y='child', title=doc_mapping[choices_top_level [i]], orientation='h')
+                st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+st.header('All codes by documents')
+
+choices = st.multiselect("Choose documents to compare", list(doc_mapping.values()), key=1)
 choices = [rev_doc_mapping[c] for c in choices]
+
 if len(choices) > 0:
     if len(choices) < 3:
         cols = st.columns(len(choices))

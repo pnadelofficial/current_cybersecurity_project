@@ -27,12 +27,15 @@ double_codes_color_mapping = {
     "liberalism": "greens",
     "constructivism": "blues",
     "realism": "rdgy",
-    "cyberpersistence":" brwnyl"
+    "cyberpersistence":"brwnyl"
 }
 
-# code_mapping = {
-#     "liberalism": "Neoliberal Institutionalism",
-# }
+top_level = [
+    'Deterrence.docx',
+    'NLI.docx',
+    'Persistence.docx',
+    'International Norms.docx',
+]
 
 def get_number_of_codes_by_doc_and_primary_source(doc_path, primary_source):
     ancestor = doc_path.split('/')[-3]
@@ -71,11 +74,23 @@ def make_df_from_ps(ps):
     for code in codes:
         for root, dirs, files in os.walk(f'./data/code_docs/{code}/'):
             for file in files:
-                if file.endswith('.docx'):
+                if file.endswith('.docx') and (file not in top_level):
                     tag_tup = get_number_of_codes_by_doc_and_primary_source(os.path.join(root, file), ps)
                     if tag_tup:
                         results.append(tag_tup)
 
+    df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs']) 
+    return df
+
+def make_df_from_ps_top_level(ps):
+    results = []
+    for code in codes:
+        if code != 'policy_engineering_tasks':
+            for file in os.listdir('./data/code_docs/' + code):
+                if file.endswith('.docx'):
+                    tag_tup = get_number_of_codes_by_doc_and_primary_source(f'./data/code_docs/{code}/{file}', ps)
+                    if tag_tup:
+                        results.append(tag_tup)
     df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs']) 
     return df
 
@@ -97,10 +112,10 @@ def read_doc_collect_codes(path):
 @st.cache_data
 def get_pet_dict():
     pet_dict = collections.defaultdict(list)
-    for file in os.listdir('./data/code_docs/policy_engineering_task'):
+    for file in os.listdir('./data/code_docs/policy_engineering_tasks'):
         if file == 'implementation':
             continue
-        path = f'./data/code_docs/policy_engineering_task/{file}'
+        path = f'./data/code_docs/policy_engineering_tasks/{file}'
         _dict = read_doc_collect_codes(path)
         for k, v in _dict.items():
             pet_dict[k] += v
