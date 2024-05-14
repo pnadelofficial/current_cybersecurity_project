@@ -10,7 +10,8 @@ utils.line_break()
 
 st.header("Compare case studies")
 
-csc = ['All'] # st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
+# csc = ['All'] # 
+csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
 
 # with st.expander("Liberalism "):
 #     st.markdown("""
