@@ -23,7 +23,7 @@ national cybersecurity guidance across three different administrations:
 
 | Case Study 1: 2010-2011 | Case Study 2: 2014-2015 | Case Study 3: 2017-2018 | Case Study 4: 2022-2023 |
 |-------------------------|------------------------|------------------------|------------------------|
-| 2010 Mational Security Strategy | 2015 National Security Strategy | 2017 National Security Strategy | 2022 National Security Strategy |
+| 2010 National Security Strategy | 2015 National Security Strategy | 2017 National Security Strategy | 2022 National Security Strategy |
 | 2011 Int'l Strategy for Cyberspace | 2015 WH Deterrence Strategy | 2018 National Cyber Strategy | 2023 National Cyber Strategy |
 | 2010 Quadrennial Defense Review | 2014 Quadrennial Defense Review | 2018 National Defense Strategy | 2022 National Defense Strategy |
 | 2011 National Military Strategy | 2015 National Military Strategy | 2018 National Military Strategy | 2022 National Military |
