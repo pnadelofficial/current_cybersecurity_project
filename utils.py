@@ -91,12 +91,11 @@ def read_doc_collect_codes(path):
 def get_pet_dict():
     pet_dict = collections.defaultdict(list)
     for file in os.listdir('./data/code_docs/policy_engineering_tasks'):
-        if file == 'implementation':
-            continue
-        path = f'./data/code_docs/policy_engineering_tasks/{file}'
-        _dict = read_doc_collect_codes(path)
-        for k, v in _dict.items():
-            pet_dict[k] += v
+        base_path = f'./data/code_docs/policy_engineering_tasks/{file}'
+        for path in [f'{base_path}/{f}' for f in os.listdir(base_path)]:
+            _dict = read_doc_collect_codes(path)
+            for k, v in _dict.items():
+                pet_dict[k] += v
     return pet_dict
 
 def line_break():
