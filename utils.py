@@ -54,7 +54,7 @@ doc_mapping = {
 case_studies = {
     '2011':
         [
-            '2009 Cyberspace Policy Review Assuring a Trusted and R',
+            # '2009 Cyberspace Policy Review Assuring a Trusted and R',
             '2010_national_security_strategy',
             '2011 DOD Strategy for Operating in Cy',
             '2011',
@@ -119,10 +119,12 @@ class CaseStudy:
         else:
             self.primary_sources = case_studies[year]
     
-    def _get_number_of_codes_by_primary_source(self, ps=None):
+    def _get_number_of_codes_by_primary_source(self, ps=None, code_choice=None):
         """For hierachy maps and bar charts"""
         results = []
         for code in codes:
+            if code_choice and (code_choice != code):
+                continue
             for root, dirs, files in os.walk(f'./data/code_docs/{code}/'):
                 for file in files:
                     if file in ["Design.docx", "Maintenance.docx", "National Interests.docx", "Objective.docx", "Review.docx", "Strategy.docx"]:

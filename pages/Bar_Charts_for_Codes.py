@@ -13,6 +13,8 @@ st.header("Compare case studies")
 with st.expander("Lorem ipsum"):
     st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
+code_choice = st.selectbox("Choose code", ['All']+utils.codes)
+code_choice = code_choice if code_choice != 'All' else None
 if len(csc) > 0:
     if len(csc) < 3:
         cols = st.columns(len(csc))
@@ -21,7 +23,7 @@ if len(csc) > 0:
                 if csc[i] == 'All':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
-                results = cs._get_number_of_codes_by_primary_source()
+                results = cs._get_number_of_codes_by_primary_source(code_choice=code_choice)
                 fig = cs.plot_bar_chart(results)
                 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
                 st.plotly_chart(fig,theme="streamlit", use_container_width=True)

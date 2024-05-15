@@ -22,7 +22,7 @@ if len(csc) > 0:
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
-                st.plotly_chart(cs.plot_treemap(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_treemap(results, ps=f'{csc[i]} Case Study'),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(csc)
         for i, tab in enumerate(tabs):
@@ -31,7 +31,7 @@ if len(csc) > 0:
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
-                st.plotly_chart(cs.plot_treemap(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_treemap(results, ps=f'{csc[i]} Case Study'),theme="streamlit", use_container_width=True)
 
 st.divider()
 
@@ -49,7 +49,7 @@ if len(choices) > 0:
                 year_of_ps = utils.get_year_of_ps(choices_rev[i])    
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices_rev[i])
-                st.plotly_chart(cs.plot_treemap(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_treemap(results, ps=choices_rev[i]),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(choices)
         for i, tab in enumerate(tabs):
@@ -57,4 +57,4 @@ if len(choices) > 0:
                 year_of_ps = utils.get_year_of_ps(choices_rev[i])    
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices_rev[i])
-                st.plotly_chart(cs.plot_treemap(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_treemap(results, ps=choices_rev[i]),theme="streamlit", use_container_width=True)
