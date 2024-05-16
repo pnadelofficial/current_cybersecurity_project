@@ -18,10 +18,10 @@ utils.line_break()
 
 st.header("Compare case studies")
 
-csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
+csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'], format_func=lambda x: x.title() if x != 'All' else 'All Case Studies')
 
 if len(csc) > 0:
-    choice = st.selectbox("Choose code", utils.codes[:-1])
+    choice = st.selectbox("Choose code", utils.codes[:-1], format_func=lambda x: x.title())
     if len(csc) < 3:
         cols = st.columns(len(csc))
         for i, col in enumerate(cols):

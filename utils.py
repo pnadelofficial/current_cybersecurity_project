@@ -6,6 +6,8 @@ import os
 import streamlit as st
 import collections
 
+# open expnder by default
+
 codes = [
     "liberalism", 
     "constructivism", 
@@ -186,12 +188,15 @@ class CaseStudy:
             treemapcolorway = ["darkgreen", "darkblue", "darkred", "teal", "saddlebrown"],
             margin = dict(t=50, l=50, r=50, b=50)
         )
+        # add title
         return fig
 
     def plot_bar_chart(self, results, title=None):
         df = pd.DataFrame(results, columns=['ancestor', 'parent', 'codes', 'references']) 
         df = df[df.references > 0]
-        fig = px.bar(df, x='references', y='codes', title=title, orientation='h')    
+        fig = px.bar(df, x='references', y='codes', title=title, orientation='h')
+        # add title
+        fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)    
         return fig
 
 class CodeDoc:

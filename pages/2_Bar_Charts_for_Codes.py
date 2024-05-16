@@ -61,7 +61,7 @@ if len(choices) > 0:
                 year_of_ps = utils.get_year_of_ps(choices[i])    
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
-                fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)
+                # 
                 st.plotly_chart(cs.plot_bar_chart(results),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(choices)
@@ -70,5 +70,5 @@ if len(choices) > 0:
                 year_of_ps = utils.get_year_of_ps(choices[i])    
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
-                fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)
+                # fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)
                 st.plotly_chart(cs.plot_bar_chart(results),theme="streamlit", use_container_width=True)
