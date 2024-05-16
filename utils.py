@@ -17,12 +17,12 @@ codes = [
 ]
 
 color_mapping = {
-    "Academic Interaction":"gold",
-    "Liberalism":"darkgreen", 
-    "Constructivism":"darkblue", 
-    "Realism":"darkred", 
-    "Cyber Persistence":"saddlebrown", 
-    "Policy Engineering Tasks":"teal"
+    # "Academic Interaction":"gold",
+    "liberalism":"darkgreen", 
+    "constructivism":"darkblue", 
+    "realism":"darkred", 
+    "cyberpersistence":"saddlebrown", 
+    "policy_engineering_tasks":"teal"
 }
 
 double_codes_color_mapping = {
@@ -70,7 +70,11 @@ case_studies = {
             '2014 Quadrennial Defense Review CLEAN',
             '2015 DOD Cyber Strategy CLEAN',
             '2015 National Military Strategy CLEAN'
-        ]
+        ],
+    # '2018':
+    #     [
+
+    #     ]
 }
 
 def read_doc_collect_codes(path):
@@ -178,25 +182,29 @@ class CaseStudy:
 
     def plot_treemap(self, results, ps=None):
         df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs'])
+        df['ancestor'] = df['ancestor'].str.capitalize()
+        df['parent'] = df['parent'].str.capitalize()
+        df['child'] = df['child'].str.capitalize()
         if ps:
             fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant(ps), 'ancestor', 'parent', 'child'], values='refs')
         else:
             fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant("Home"), 'ancestor', 'parent', 'child'], values='refs')
         fig.data[0].texttemplate = "<br><br><em style='font-size:75px'>%{label}</em><br>Code count (normalized by number of files): %{value}<br>Description: %{customdata[0]}"
         fig.update_traces(root_color="lightgrey")
+        treemapcolorway = [color_mapping[c.lower()] for c in df.sort_values(by='refs', ascending=False)['ancestor'].unique()]
         fig.update_layout(
-            treemapcolorway = ["darkgreen", "darkblue", "darkred", "teal", "saddlebrown"],
+            treemapcolorway = treemapcolorway,
             margin = dict(t=50, l=50, r=50, b=50)
         )
-        # add title
         return fig
 
-    def plot_bar_chart(self, results, title=None):
-        df = pd.DataFrame(results, columns=['ancestor', 'parent', 'codes', 'references']) 
+    def plot_bar_chart(self, results, title=None, showlegend=True):
+        df = pd.DataFrame(results, columns=['Top level code', 'parent', 'codes', 'references']) 
         df = df[df.references > 0]
-        fig = px.bar(df, x='references', y='codes', title=title, orientation='h')
-        # add title
-        fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)    
+        color = [color_mapping[c] for c in df['Top level code'].unique()]
+        df['Top level code'] = df['Top level code'].str.capitalize()
+        fig = px.bar(df, x='references', y='codes', title=title, orientation='h', color='Top level code', color_discrete_sequence=color)
+        fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900, showlegend=showlegend)    
         return fig
 
 class CodeDoc:

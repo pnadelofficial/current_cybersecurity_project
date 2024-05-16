@@ -24,7 +24,11 @@ if len(csc) > 0:
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
-                st.plotly_chart(cs.plot_treemap(results, ps=f'{csc[i]} Case Study'),theme="streamlit", use_container_width=True)
+                if isinstance(csc[i], str):
+                    title = csc[i] + " Case Study" 
+                else: 
+                    title = "All case studies"
+                st.plotly_chart(cs.plot_treemap(results, ps=title),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(csc)
         for i, tab in enumerate(tabs):
@@ -33,7 +37,11 @@ if len(csc) > 0:
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
-                st.plotly_chart(cs.plot_treemap(results, ps=f'{csc[i]} Case Study'),theme="streamlit", use_container_width=True)
+                if isinstance(csc[i], str):
+                    title = csc[i] + " Case Study" 
+                else: 
+                    title = "All case studies"
+                st.plotly_chart(cs.plot_treemap(results, ps=title),theme="streamlit", use_container_width=True)
 
 st.divider()
 

@@ -30,7 +30,17 @@ if len(csc) > 0:
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source(code_choice=code_choice)
-                fig = cs.plot_bar_chart(results)
+                if isinstance(csc[i], str):
+                    if code_choice:
+                        title = code_choice.title() + " in the " + csc[i] + " Case Study"
+                    else:
+                        title = csc[i] + " Case Study"
+                else:
+                    if code_choice:
+                        title = code_choice.title() + " in all case studies"
+                    else:
+                        title = "All Case Studies"
+                fig = cs.plot_bar_chart(results, title=title)
                 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
                 st.plotly_chart(fig,theme="streamlit", use_container_width=True)
     else:
@@ -40,8 +50,18 @@ if len(csc) > 0:
                 if csc[i] == 'All':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
-                results = cs._get_number_of_codes_by_primary_source()
-                fig = cs.plot_bar_chart(results)
+                results = cs._get_number_of_codes_by_primary_source(code_choice=code_choice)
+                if isinstance(csc[i], str):
+                    if code_choice:
+                        title = code_choice.title() + " in the " + csc[i] + " Case Study"
+                    else:
+                        title = csc[i] + " Case Study"
+                else:
+                    if code_choice:
+                        title = code_choice.title() + " in all case studies"
+                    else:
+                        title = "All Case Studies"
+                fig = cs.plot_bar_chart(results, title=title)
                 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
                 st.plotly_chart(fig,theme="streamlit", use_container_width=True)
 
@@ -61,8 +81,7 @@ if len(choices) > 0:
                 year_of_ps = utils.get_year_of_ps(choices[i])    
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
-                # 
-                st.plotly_chart(cs.plot_bar_chart(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_bar_chart(results, title=choices[i]),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(choices)
         for i, tab in enumerate(tabs):
@@ -71,4 +90,4 @@ if len(choices) > 0:
                 cs = utils.CaseStudy(year_of_ps)
                 results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
                 # fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900)
-                st.plotly_chart(cs.plot_bar_chart(results),theme="streamlit", use_container_width=True)
+                st.plotly_chart(cs.plot_bar_chart(results, title=choices[i]),theme="streamlit", use_container_width=True)
