@@ -4,14 +4,16 @@ import plotly.express as px
 import utils
 
 st.title("Hierarchy Maps for Codes")
-with st.expander("Lorem ipsum"):
-    st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
 
 utils.line_break()
 
 st.header("Compare case studies")
-with st.expander("Lorem ipsum"):
-    st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+with st.expander("Case Study Comparison"):
+    st.write("""
+        The color-coded tree maps below depict the parent-child code hierarchy for Concept and In Vivo Codes for each theoretical paradigm.  Users can click on the nested rectangles to expand the code and examine the parent-child relationship. The size of the rectangular data frames corresponds to the amount of text tagged with that paradigmatic code.
+
+        study comparison function allows the viewer to evaluate coded language for the hierarchy of strategic documents associated with a single case study or compare across multiple cases.
+    """)
 csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
 if len(csc) > 0:
     if len(csc) < 3:
@@ -35,9 +37,9 @@ if len(csc) > 0:
 
 st.divider()
 
-st.header("Compare primary sources")
-with st.expander("Lorem ipsum"):
-    st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+st.header("Compare Documents")
+with st.expander("Document Comparison"):
+    st.write("The primary source document comparison function allows the viewer to compare coded language within a single strategic document, between strategic documents within a single case study, or among several documents across multiple cases.")
 rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
 choices = st.multiselect("Choose documents to compare", list(utils.doc_mapping.values()))
 choices_rev = [rev_doc_mapping[c] for c in choices]

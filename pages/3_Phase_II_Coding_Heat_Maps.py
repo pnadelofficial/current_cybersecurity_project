@@ -2,33 +2,23 @@ import streamlit as st
 import utils
 import plotly.express as px
 
-st.title("Double Codes Heat Maps")
-with st.expander("Lorem ipsum"):
-    st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+st.title("Phase II Coding Heat Maps")
+with st.expander("Second Cycle / Phase II Coding "):
+    st.write("""
+        A Phase II coding technique was applied to national policy documents to identify instances of interaction between Policy Engineering Tasks 1 and 2 (National Interests and Objectives) and the core assumptions of various theoretical paradigms. This interaction represents the operationalization of the first step of the research methodology, which is designed to assess alignment between theory and practice in cybersecurity.
+
+        Alignment occurs when enough core assumptions of a theory match the assumptions identified in a national policy, such that the theory has prescriptive power in judging what a policy or strategy should be and what implementation will look like. 
+
+        The expectation of alignment is consistency and coherency within a policy document and across the policy-strategy-implementation continuum for a given case study.
+
+        The heat maps below depict the number of interactions between Policy Engineering Tasks 1 and 2 and Core Assumptions for each theoretical paradigm. This function allows the user to compare instances of theory-policy interaction for each case. 
+    """)
 
 utils.line_break()
 
 st.header("Compare case studies")
 
-# csc = ['All'] # 
 csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
-
-# with st.expander("Liberalism "):
-#     st.markdown("""
-# * States are primary (rational) actors, but they share power with non-state actors.
-# * International cooperation is desirable and possible. Economic and Internet
-# governance cooperation can drive politico-military cooperation.
-# * Security comes from leveraging institutions to foster cooperative relationships
-# built on mutual trust. (Causal mechanism: institutions)
-# * Complex interdependence renders national economies more sensitive and
-# vulnerable to events in other countries. The global nature of the Internet
-# intensifies interdependence and demands cooperation.
-# * Norm conformance is driven by material self-interest. Actors construct and
-# conform to norms because norms help them get what they want.
-# * NLI is rooted in a normative, optimistic ideology that produced moralistic,
-# prescriptive theories of political behavior based on how the world ought to be
-# (Carr 1939, 6).
-#     """.strip())
 
 if len(csc) > 0:
     choice = st.selectbox("Choose code", utils.codes[:-1])

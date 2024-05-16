@@ -98,9 +98,9 @@ def get_pet_dict():
                 pet_dict[k] += v
     return pet_dict
 
-def line_break():
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+def line_break(amt=2):
+    for _ in range(amt):
+        st.markdown("<br>", unsafe_allow_html=True)
 
 def get_year_of_ps(ps):
     for year, docs in case_studies.items():

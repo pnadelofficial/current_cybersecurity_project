@@ -1,0 +1,48 @@
+doc_class,year,doc,code,count
+NSS,2011-01-01,2010_national_security_strategy,liberalism,590
+NMS,2011-01-01,2011-national-military-strategy,liberalism,165
+NCS,2011-01-01,2011_International_strategy_for_cyberspace,liberalism,285
+QDR_NDS,2011-01-01,QDR as of 29JAN10 1600,liberalism,129
+NMS,2015-01-01,2015 National Military Strategy CLEAN,liberalism,163
+NSS,2015-01-01,2015 National Security Strategy CLEAN,liberalism,455
+NCS,2015-01-01,2015 WH Report on Cyber Deterrence Policy Final CLEAN,liberalism,122
+DoD,2011-01-01,2011 DOD Strategy for Operating in Cy,liberalism,55
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review CLEAN,liberalism,41
+DoD,2015-01-01,2015 DOD Cyber Strategy CLEAN,liberalism,2
+NSS,2011-01-01,2010_national_security_strategy,constructivism,291
+NMS,2011-01-01,2011-national-military-strategy,constructivism,29
+NCS,2011-01-01,2011_International_strategy_for_cyberspace,constructivism,239
+NMS,2015-01-01,2015 National Military Strategy CLEAN,constructivism,26
+NSS,2015-01-01,2015 National Security Strategy CLEAN,constructivism,186
+DoD,2011-01-01,2011 DOD Strategy for Operating in Cy,constructivism,11
+QDR_NDS,2011-01-01,QDR as of 29JAN10 1600,constructivism,0
+NCS,2015-01-01,2015 WH Report on Cyber Deterrence Policy Final CLEAN,constructivism,36
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review CLEAN,constructivism,2
+DoD,2015-01-01,2015 DOD Cyber Strategy CLEAN,constructivism,2
+NSS,2011-01-01,2010_national_security_strategy,realism,61
+NMS,2011-01-01,2011-national-military-strategy,realism,71
+QDR_NDS,2011-01-01,QDR as of 29JAN10 1600,realism,59
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review CLEAN,realism,42
+NMS,2015-01-01,2015 National Military Strategy CLEAN,realism,116
+NCS,2015-01-01,2015 WH Report on Cyber Deterrence Policy Final CLEAN,realism,229
+DoD,2011-01-01,2011 DOD Strategy for Operating in Cy,realism,17
+NCS,2011-01-01,2011_International_strategy_for_cyberspace,realism,63
+NSS,2015-01-01,2015 National Security Strategy CLEAN,realism,76
+DoD,2015-01-01,2015 DOD Cyber Strategy CLEAN,realism,2
+NSS,2011-01-01,2010_national_security_strategy,cyberpersistence,12
+DoD,2011-01-01,2011 DOD Strategy for Operating in Cy,cyberpersistence,11
+NMS,2011-01-01,2011-national-military-strategy,cyberpersistence,9
+NCS,2011-01-01,2011_International_strategy_for_cyberspace,cyberpersistence,34
+NMS,2015-01-01,2015 National Military Strategy CLEAN,cyberpersistence,4
+NSS,2015-01-01,2015 National Security Strategy CLEAN,cyberpersistence,10
+NCS,2015-01-01,2015 WH Report on Cyber Deterrence Policy Final CLEAN,cyberpersistence,26
+DoD,2015-01-01,2015 DOD Cyber Strategy CLEAN,cyberpersistence,2
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review CLEAN,cyberpersistence,2
+DoD,2011-01-01,2011 DOD Strategy for Operating in Cy,policy_engineering_tasks,49
+NMS,2011-01-01,2011-national-military-strategy,policy_engineering_tasks,20
+QDR_NDS,2011-01-01,QDR as of 29JAN10 1600,policy_engineering_tasks,43
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review CLEAN,policy_engineering_tasks,33
+DoD,2015-01-01,2015 DOD Cyber Strategy CLEAN,policy_engineering_tasks,0
+NMS,2015-01-01,2015 National Military Strategy CLEAN,policy_engineering_tasks,31
+NSS,2015-01-01,2015 National Security Strategy CLEAN,policy_engineering_tasks,9
+NCS,2015-01-01,2015 WH Report on Cyber Deterrence Policy Final CLEAN,policy_engineering_tasks,19
