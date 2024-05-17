@@ -1,0 +1,48 @@
+doc_class,year,doc,code,count
+NSS,2011-01-01,2010 National Security Strategy,liberalism,574
+QDR_NDS,2011-01-01,2010 Quadrennial Defense Review,liberalism,125
+DoD,2011-01-01,2011 DoD Cyber Strategy,liberalism,50
+NCS,2011-01-01,2011 International Strategy for Cyberspace,liberalism,254
+NMS,2011-01-01,2011 National Military Strategy,liberalism,161
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review,liberalism,41
+DoD,2015-01-01,2015 DoD Cyber Strategy,liberalism,101
+NMS,2015-01-01,2015 National Military Strategy,liberalism,163
+NSS,2015-01-01,2015 National Security Strategy,liberalism,455
+NCS,2015-01-01,2015 White House Report on Cyber Deterrence Policy,liberalism,122
+NSS,2018-01-01,2017 National Security Strategy,liberalism,480
+NCS,2018-01-01,2018 National Cyber Strategy,liberalism,115
+NSS,2011-01-01,2010 National Security Strategy,constructivism,292
+NCS,2011-01-01,2011 International Strategy for Cyberspace,constructivism,239
+NMS,2011-01-01,2011 National Military Strategy,constructivism,29
+DoD,2015-01-01,2015 DoD Cyber Strategy,constructivism,14
+NMS,2015-01-01,2015 National Military Strategy,constructivism,26
+NSS,2015-01-01,2015 National Security Strategy,constructivism,186
+NSS,2018-01-01,2017 National Security Strategy,constructivism,184
+NCS,2018-01-01,2018 National Cyber Strategy,constructivism,101
+QDR_NDS,2011-01-01,2010 Quadrennial Defense Review,constructivism,0
+DoD,2011-01-01,2011 DoD Cyber Strategy,constructivism,11
+NCS,2015-01-01,2015 White House Report on Cyber Deterrence Policy,constructivism,34
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review,constructivism,2
+NSS,2011-01-01,2010 National Security Strategy,realism,58
+QDR_NDS,2011-01-01,2010 Quadrennial Defense Review,realism,59
+NMS,2011-01-01,2011 National Military Strategy,realism,69
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review,realism,42
+DoD,2015-01-01,2015 DoD Cyber Strategy,realism,95
+NMS,2015-01-01,2015 National Military Strategy,realism,116
+NCS,2015-01-01,2015 White House Report on Cyber Deterrence Policy,realism,229
+NSS,2018-01-01,2017 National Security Strategy,realism,457
+NCS,2018-01-01,2018 National Cyber Strategy,realism,110
+DoD,2011-01-01,2011 DoD Cyber Strategy,realism,17
+NCS,2011-01-01,2011 International Strategy for Cyberspace,realism,63
+NSS,2015-01-01,2015 National Security Strategy,realism,76
+NSS,2011-01-01,2010 National Security Strategy,cyberpersistence,12
+DoD,2011-01-01,2011 DoD Cyber Strategy,cyberpersistence,11
+NCS,2011-01-01,2011 International Strategy for Cyberspace,cyberpersistence,34
+NMS,2011-01-01,2011 National Military Strategy,cyberpersistence,9
+DoD,2015-01-01,2015 DoD Cyber Strategy,cyberpersistence,22
+NMS,2015-01-01,2015 National Military Strategy,cyberpersistence,4
+NSS,2015-01-01,2015 National Security Strategy,cyberpersistence,10
+NCS,2015-01-01,2015 White House Report on Cyber Deterrence Policy,cyberpersistence,26
+NSS,2018-01-01,2017 National Security Strategy,cyberpersistence,42
+NCS,2018-01-01,2018 National Cyber Strategy,cyberpersistence,26
+QDR_NDS,2015-01-01,2014 Quadrennial Defense Review,cyberpersistence,2

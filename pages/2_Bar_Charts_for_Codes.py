@@ -70,9 +70,9 @@ st.divider() # got rid of top level codes, seemed out of place
 st.header('All codes by documents')
 with st.expander("Document Comparison"):
     st.write("The bar charts below depict the number of text excerpts coded against each paradigmatic code within the selected file(s). This function allows the viewer to compare coded language within a single strategic document, between strategic documents within a single case study, or among several documents across multiple cases.")
-choices = st.multiselect("Choose documents to compare", list(utils.doc_mapping.values()), key=1, format_func=lambda x: x.replace('_', ' ').replace('CLEAN', '').strip())
-rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
-choices = [rev_doc_mapping[c] for c in choices]
+choices = st.multiselect("Choose documents to compare", list(utils.all_docs), key=1, format_func=lambda x: x.replace('_', ' ').replace('CLEAN', '').strip())
+# rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
+# choices = [rev_doc_mapping[c] for c in choices]
 if len(choices) > 0:
     if len(choices) < 3:
         cols = st.columns(len(choices))

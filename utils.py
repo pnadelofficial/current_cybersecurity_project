@@ -17,7 +17,14 @@ codes = [
 ]
 
 color_mapping = {
-    # "Academic Interaction":"gold",
+    "Liberalism":"darkgreen", 
+    "Constructivism":"darkblue", 
+    "Realism":"darkred", 
+    "Cyberpersistence":"saddlebrown", 
+    "Policy engineering tasks":"teal"
+}
+
+color_mapping_lower = {
     "liberalism":"darkgreen", 
     "constructivism":"darkblue", 
     "realism":"darkred", 
@@ -39,50 +46,45 @@ top_level = [
     'International Norms.docx',
 ]
 
-doc_mapping = {
-    '2009 Cyberspace Policy Review Assuring a Trusted and R':'2009 Cyberspace Policy Review_CLEAN',
-    '2010_national_security_strategy':'2010_national_security_strategy_CLEAN',
-    '2011 DOD Strategy for Operating in Cy':'2011 DOD Strategy for Operating in Cyber_CLEAN',
-    '2011':'2011-national-military-strategy_CLEAN',
-    '2011_International_strategy_for_cyberspace':'2011_international_strategy_for_cyberspace_CLEAN',
-    'QDR as of 29JAN10 1600':'2010_QDR_CLEAN',
-    "2015 National Security Strategy CLEAN": "2015 National Security Strategy CLEAN",
-    '2015 WH Report on Cyber Deterrence Policy Final CLEAN': '2015 WH Report on Cyber Deterrence Policy Final CLEAN',
-    '2014 Quadrennial Defense Review CLEAN': '2014 Quadrennial Defense Review CLEAN',
-    '2015 DOD Cyber Strategy CLEAN': '2015 DOD Cyber Strategy CLEAN',
-    '2015 National Military Strategy CLEAN': '2015 National Military Strategy CLEAN',
-}
-
 case_studies = {
     '2011':
         [
-            # '2009 Cyberspace Policy Review Assuring a Trusted and R',
-            '2010_national_security_strategy',
-            '2011 DOD Strategy for Operating in Cy',
-            '2011',
-            '2011_International_strategy_for_cyberspace',
-            'QDR as of 29JAN10 1600'
+            '2010 National Security Strategy',
+            '2011 DoD Cyber Strategy',
+            '2011 National Military Strategy',
+            '2011 International Strategy for Cyberspace',
+            '2010 Quadrennial Defense Review'
         ],
     "2015":
         [
-            "2015 National Security Strategy CLEAN",
-            '2015 WH Report on Cyber Deterrence Policy Final CLEAN',
-            '2014 Quadrennial Defense Review CLEAN',
-            '2015 DOD Cyber Strategy CLEAN',
-            '2015 National Military Strategy CLEAN'
+            "2015 National Security Strategy",
+            '2015 White House Report on Cyber Deterrence Policy',
+            '2014 Quadrennial Defense Review',
+            '2015 DoD Cyber Strategy',
+            '2015 National Military Strategy'
         ],
-    # '2018':
-    #     [
-
-    #     ]
+    '2018':
+        [
+            "2017 National Security Strategy",
+            "2018 DoD Cyber Strategy Summary",
+            "2018 National Cyber Strategy",
+            "2018 National Defense Strategy Summary",
+            "2018 National Military Strategy Description"
+        ]
 }
+
+all_docs = []
+for year, docs in case_studies.items():
+    all_docs += docs
 
 def read_doc_collect_codes(path):
     code = path.split('/')[-1].replace('.docx', '') 
+    if path.endswith(".DS_Store"):
+        return {}
     doc = Document(path)
     doc_text = '\n'.join([p.text for p in doc.paragraphs])
-    doc_names = re.findall(r'Files\\\\20\d{2} Case Study\\\\Primary Sources_Policy_Strategies\\\\(.*) - .*', doc_text)
-    doc_refs = re.split(r'Files\\\\20\d{2} Case Study\\\\Primary Sources_Policy_Strategies\\\\.*',doc_text)[1:]
+    doc_names = re.findall(r'Files\\\\20\d{2} Case Study\\\\.*Primary Sources_Policy_Strategies\\\\(.*) - .*', doc_text)
+    doc_refs = re.split(r'Files\\\\20\d{2} Case Study\\\\.*Primary Sources_Policy_Strategies\\\\.*',doc_text)[1:]
     docs = list(zip(doc_names, doc_refs))
 
     doc_dict = {} 
@@ -91,7 +93,6 @@ def read_doc_collect_codes(path):
         doc_dict[name] = [(code, r) for r in refs]
 
     return doc_dict
-
 
 @st.cache_data
 def get_pet_dict():
@@ -182,27 +183,21 @@ class CaseStudy:
 
     def plot_treemap(self, results, ps=None):
         df = pd.DataFrame(results, columns=['ancestor', 'parent', 'child', 'refs'])
-        df['ancestor'] = df['ancestor'].str.capitalize()
-        df['parent'] = df['parent'].str.capitalize()
+        df['ancestor'] = df['ancestor'].str.capitalize().apply(lambda x: x if x != "Policy_engineering_tasks" else 'Policy engineering tasks')
+        df['parent'] = df['parent'].str.capitalize().apply(lambda x: x if x != 'Nli' else 'NLI')
         df['child'] = df['child'].str.capitalize()
         if ps:
-            fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant(ps), 'ancestor', 'parent', 'child'], values='refs')
+            fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant(ps), 'ancestor', 'parent', 'child'], values='refs', color='ancestor', color_discrete_sequence=['lightgrey'], color_discrete_map=color_mapping)
         else:
-            fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant("Home"), 'ancestor', 'parent', 'child'], values='refs')
+            fig = px.treemap(df[~(df.child.isnull())] , path=[px.Constant("Home"), 'ancestor', 'parent', 'child'], values='refs', color='ancestor', color_discrete_sequence=['lightgrey'], color_discrete_map=color_mapping)
         fig.data[0].texttemplate = "<br><br><em style='font-size:75px'>%{label}</em><br>Code count (normalized by number of files): %{value}<br>Description: %{customdata[0]}"
-        fig.update_traces(root_color="lightgrey")
-        treemapcolorway = [color_mapping[c.lower()] for c in df.sort_values(by='refs', ascending=False)['ancestor'].unique()]
-        fig.update_layout(
-            treemapcolorway = treemapcolorway,
-            margin = dict(t=50, l=50, r=50, b=50)
-        )
         return fig
 
     def plot_bar_chart(self, results, title=None, showlegend=True):
         df = pd.DataFrame(results, columns=['Top level code', 'parent', 'codes', 'references']) 
         df = df[df.references > 0]
-        color = [color_mapping[c] for c in df['Top level code'].unique()]
-        df['Top level code'] = df['Top level code'].str.capitalize()
+        color = [color_mapping_lower[c] for c in df['Top level code'].unique()]
+        df['Top level code'] = df['Top level code'].str.capitalize().apply(lambda x: x if x != "Policy_engineering_tasks" else 'Policy engineering tasks')
         fig = px.bar(df, x='references', y='codes', title=title, orientation='h', color='Top level code', color_discrete_sequence=color)
         fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=900, showlegend=showlegend)    
         return fig
@@ -232,7 +227,11 @@ class CodeDoc:
     
     def _get_number_of_codes_per_doc(self, chunk):
         # keeping title for now, but should thinking about how to use it
-        title = re.search(r'Primary Sources_Policy_Strategies\\\\(.*)-', chunk).group(1)
+        title_check = re.search(r'.*Primary Sources_Policy_Strategies\\\\(.*)-', chunk)
+        if title_check:
+            title = title_check.group(1)
+        else:
+            return None
         m = re.search(r'§ (\d+) references coded', chunk)
         if m:
             return title.strip(), int(m.group(1))
@@ -246,7 +245,10 @@ class CodeDoc:
         ps_with_codes = {}
         chunks = self._collect_primary_source_chunks()
         for chunk in chunks:
-            title, num_codes = self._get_number_of_codes_per_doc(chunk)
+            tup = self._get_number_of_codes_per_doc(chunk)
+            if tup is None:
+                continue
+            title, num_codes = tup
             ps_with_codes[title] = (self.ancestor, self.parent, self.child, num_codes)
         return ps_with_codes
     
@@ -256,7 +258,11 @@ class CodeDoc:
 
         doc_dict = {} 
         for chunk in chunks:
-            name = re.search(r'Primary Sources_Policy_Strategies\\\\(.*)-', chunk).group(1)
+            name_check = re.search(r'.*Primary Sources_Policy_Strategies\\\\(.*)-', chunk)
+            if name_check:
+                name = name_check.group(1)
+            else:
+                continue
             refs = re.findall(r'Reference \d+ - .* Coverage\n(.*)', chunk)
             doc_dict[name] = [(code, r) for r in refs]
         return doc_dict

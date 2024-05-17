@@ -8,12 +8,12 @@ with st.expander("Bubble Chart for Cases"):
 
 @st.cache_data
 def load_data():
-    bubble_df = pd.read_csv('./data/bubble_data0516.csv')
+    bubble_df = pd.read_csv('./data/bubble_data0517.csv')
     bubble_df['year'] = pd.to_datetime(bubble_df.year)
     return bubble_df
 bubble_df = load_data()
 
-csc = st.multiselect("Choose case studies", ['2011', '2015'], default=['2011', '2015'])
+csc = st.multiselect("Choose case studies", ['2011', '2015', '2018'], default=['2011', '2015', '2018'])
 
 if csc:
     fig = px.scatter(bubble_df[bubble_df.year.isin(csc)], x='year', y='doc_class', size='count', color='code', hover_name='doc')

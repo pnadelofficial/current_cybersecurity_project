@@ -48,23 +48,23 @@ st.divider()
 st.header("Compare Documents")
 with st.expander("Document Comparison"):
     st.write("The primary source document comparison function allows the viewer to compare coded language within a single strategic document, between strategic documents within a single case study, or among several documents across multiple cases.")
-rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
-choices = st.multiselect("Choose documents to compare", list(utils.doc_mapping.values()))
-choices_rev = [rev_doc_mapping[c] for c in choices]
+# rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
+choices = st.multiselect("Choose documents to compare", list(utils.all_docs))
+# choices_rev = [rev_doc_mapping[c] for c in choices]
 if len(choices) > 0:
     if len(choices) < 3:
         cols = st.columns(len(choices))
         for i, col in enumerate(cols):
             with col:
-                year_of_ps = utils.get_year_of_ps(choices_rev[i])    
+                year_of_ps = utils.get_year_of_ps(choices[i])    
                 cs = utils.CaseStudy(year_of_ps)
-                results = cs._get_number_of_codes_by_primary_source(ps=choices_rev[i])
-                st.plotly_chart(cs.plot_treemap(results, ps=choices_rev[i]),theme="streamlit", use_container_width=True)
+                results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
+                st.plotly_chart(cs.plot_treemap(results, ps=choices[i]),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(choices)
         for i, tab in enumerate(tabs):
             with tab:
-                year_of_ps = utils.get_year_of_ps(choices_rev[i])    
+                year_of_ps = utils.get_year_of_ps(choices[i])    
                 cs = utils.CaseStudy(year_of_ps)
-                results = cs._get_number_of_codes_by_primary_source(ps=choices_rev[i])
-                st.plotly_chart(cs.plot_treemap(results, ps=choices_rev[i]),theme="streamlit", use_container_width=True)
+                results = cs._get_number_of_codes_by_primary_source(ps=choices[i])
+                st.plotly_chart(cs.plot_treemap(results, ps=choices[i]),theme="streamlit", use_container_width=True)
