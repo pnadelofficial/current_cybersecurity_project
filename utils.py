@@ -169,10 +169,13 @@ class CaseStudy:
             _ca = ca_dict[doc]
             hm_data = []
             for t in _pet:
-                for s in _ca:
-                    if t[1] == s[1]:
-                        hm_data.append((t[0], s[0]))         
+                if (t[0] == 'Objective') or (t[0] == 'National Interests'): 
+                    for s in _ca:
+                        if t[1] == s[1]:
+                            hm_data.append((t[0], s[0]))         
             hmdf = pd.DataFrame(hm_data, columns=['policy engineering task', f'{choice} core assumptions'])
+            print(doc)
+            print(hmdf)
             pair_counts = hmdf.groupby([f'{choice} core assumptions', 'policy engineering task']).size().reset_index(name='Count')
             hm_data = pair_counts.pivot(index=f'{choice} core assumptions', columns='policy engineering task', values='Count').fillna(0)
             if len(hm_data) == 0:
