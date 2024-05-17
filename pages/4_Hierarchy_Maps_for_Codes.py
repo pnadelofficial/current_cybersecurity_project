@@ -12,7 +12,7 @@ with st.expander("Case Study Comparison"):
     st.write("""
         The color-coded tree maps below depict the parent-child code hierarchy for Concept and In Vivo Codes for each theoretical paradigm.  Users can click on the nested rectangles to expand the code and examine the parent-child relationship. The size of the rectangular data frames corresponds to the amount of text tagged with that paradigmatic code.
 
-        study comparison function allows the viewer to evaluate coded language for the hierarchy of strategic documents associated with a single case study or compare across multiple cases.
+        The case study comparison function allows the viewer to evaluate coded language for the hierarchy of strategic documents associated with a single case study or compare across multiple cases.
     """)
 csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
 if len(csc) > 0:

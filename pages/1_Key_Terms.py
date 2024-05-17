@@ -15,6 +15,8 @@ st.markdown("""
             5. implementation, 
             6. maintenance, and 
             7. policy review.
-    * **First Cylce/Phase I Coding**: The analytic process of tagging the text of primary source documents according to a preliminary list of theoretical and conceptual concepts, key words, and phrases. 
+    * **First Cylce/Phase I Coding**: The analytic process of tagging the text of primary source documents according to a preliminary list of theoretical concepts, key words, and phrases. 
     * **Second Cycle/Phase II Coding**: The analytic process of synthesizing, abstracting, and integrating coding concepts to derive deeper meaning from qualitative source data. 
 """)
+
+st.image("images/Screenshot 2024-03-26 at 8.58.06 AM.png")
