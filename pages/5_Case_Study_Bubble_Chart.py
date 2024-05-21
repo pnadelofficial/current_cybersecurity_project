@@ -21,7 +21,7 @@ if csc:
         xaxis=dict(
             # autorange=False,
             tickvals=[2011, 2015],
-            ticktext=['2011', '2015'],
+            ticktext=['2011', '2015', '2018'],
             tick0=0,
             dtick=1
         )
