@@ -23,16 +23,40 @@ csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['
 if len(csc) > 0:
     choice = st.selectbox("Choose code", utils.codes[:-1], format_func=lambda x: x.title())
     if len(csc) < 3:
+        fig_dict = {}
+        for i in range(len(csc)):
+            if csc[i] == 'All':
+                csc[i] = list(utils.case_studies.keys())
+            cs = utils.CaseStudy(csc[i])
+            pet_dict = utils.get_pet_dict()
+            figs = cs.plot_heatmap(pet_dict, choice)
+            fig_dict[i] = sorted(figs, key=lambda x: x.layout.title.text[5:].strip())
+
+        fig_height = 0
         cols = st.columns(len(csc))
-        for i, col in enumerate(cols):
-            with col:
-                if csc[i] == 'All':
-                    csc[i] = list(utils.case_studies.keys())
-                cs = utils.CaseStudy(csc[i])
-                pet_dict = utils.get_pet_dict()
-                figs = cs.plot_heatmap(pet_dict, choice)
-                for fig in figs:    
-                    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+        if len(csc) > 1:
+            if len(fig_dict[0]) < len(fig_dict[1]):
+                something = csc[0] + ' ' + fig_dict[1][-1].layout.title.text[5:].strip()
+                fig_dict[0].append(f"{something}")
+            if len(fig_dict[1]) < len(fig_dict[0]):
+                something = csc[1] + ' ' + fig_dict[0][-1].layout.title.text[5:].strip()
+                fig_dict[1].append(f"{something}")
+            for i, col in enumerate(cols):
+                with col:
+                    for fig in fig_dict[i]:    
+                        if type(fig) == str:
+                            utils.line_break(1)
+                            container = st.container(height=fig_height, border=False)
+                            text = f"<b>{fig}</b> is missing"
+                            container.markdown(f"<div style='text-align: center;'>{text}</div>", unsafe_allow_html=True) # 
+                        else:
+                            fig_height += fig.layout.height
+                            st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+        else:
+            for i, col in enumerate(cols):
+                with col:
+                    for fig in fig_dict[i]:    
+                        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(csc)
         for i, tab in enumerate(tabs):

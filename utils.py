@@ -98,8 +98,10 @@ def read_doc_collect_codes(path):
 def get_pet_dict():
     pet_dict = collections.defaultdict(list)
     for file in os.listdir('./data/code_docs/policy_engineering_tasks'):
+        if file == ".DS_Store":
+            continue
         base_path = f'./data/code_docs/policy_engineering_tasks/{file}'
-        for path in [f'{base_path}/{f}' for f in os.listdir(base_path)]:
+        for path in [f'{base_path}/{f}' for f in os.listdir(base_path) if 'DS_Store' not in f]:
             _dict = read_doc_collect_codes(path)
             for k, v in _dict.items():
                 pet_dict[k] += v
@@ -174,13 +176,11 @@ class CaseStudy:
                         if t[1] == s[1]:
                             hm_data.append((t[0], s[0]))         
             hmdf = pd.DataFrame(hm_data, columns=['policy engineering task', f'{choice} core assumptions'])
-            print(doc)
-            print(hmdf)
             pair_counts = hmdf.groupby([f'{choice} core assumptions', 'policy engineering task']).size().reset_index(name='Count')
             hm_data = pair_counts.pivot(index=f'{choice} core assumptions', columns='policy engineering task', values='Count').fillna(0)
             if len(hm_data) == 0:
                 continue
-            fig = px.imshow(hm_data, title=doc, text_auto=True, color_continuous_scale=color_scale)
+            fig = px.imshow(hm_data, title=doc, text_auto=True, color_continuous_scale=color_scale, height=600)
             figs.append(fig)
         return figs
 
