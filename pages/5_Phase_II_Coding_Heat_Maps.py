@@ -32,7 +32,6 @@ if len(csc) > 0:
             figs = cs.plot_heatmap(pet_dict, choice)
             fig_dict[i] = sorted(figs, key=lambda x: x.layout.title.text[5:].strip())
 
-        fig_height = 0
         cols = st.columns(len(csc))
         if len(csc) > 1:
             if len(fig_dict[0]) < len(fig_dict[1]):
@@ -46,11 +45,10 @@ if len(csc) > 0:
                     for fig in fig_dict[i]:    
                         if type(fig) == str:
                             utils.line_break(1)
-                            container = st.container(height=fig_height, border=False)
+                            container = st.container(border=False)
                             text = f"<b>{fig}</b> is missing"
-                            container.markdown(f"<div style='text-align: center;'>{text}</div>", unsafe_allow_html=True) # 
+                            container.markdown(f"<div style='text-align: center;'>{text}</div>", unsafe_allow_html=True) 
                         else:
-                            fig_height += fig.layout.height
                             st.plotly_chart(fig, theme="streamlit", use_container_width=True)
         else:
             for i, col in enumerate(cols):

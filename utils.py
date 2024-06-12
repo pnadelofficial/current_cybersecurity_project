@@ -180,7 +180,7 @@ class CaseStudy:
             hm_data = pair_counts.pivot(index=f'{choice} core assumptions', columns='policy engineering task', values='Count').fillna(0)
             if len(hm_data) == 0:
                 continue
-            fig = px.imshow(hm_data, title=doc, text_auto=True, color_continuous_scale=color_scale, height=600)
+            fig = px.imshow(hm_data, title=doc, text_auto=True, color_continuous_scale=color_scale)
             figs.append(fig)
         return figs
 
