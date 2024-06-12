@@ -12,6 +12,10 @@ with st.expander("Second Cycle / Phase II Coding "):
         The expectation of alignment is consistency and coherency within a policy document and across the policy-strategy-implementation continuum for a given case study.
 
         The heat maps below depict the number of interactions between Policy Engineering Tasks 1 and 2 and Core Assumptions for each theoretical paradigm. This function allows the user to compare instances of theory-policy interaction for each case. 
+             
+        ### Exceptions to Phase II Coding
+        * **2011 International Strategy for Cyberspace**: This national-level policy document is one of two outliers among the four case studies. Because it is not written as a National Cyber Strategy, it does not articulate national interests and objectives in a way that lends the document to the Phase II Coding technique. Phase I Coding, however, does reveal the concentration of theoretical concepts, key words, and phrases, as depicted in the bar charts and hierarchy maps for this policy document.
+        * **2015 White House Report on Cyber Deterrence Policy**: This national-level policy document is one of two outliers among the four case studies. Because it is not written as a National Cyber Strategy, it does not articulate national interests and objectives in a way that lends the document to the Phase II Coding technique. Phase I Coding, however, does reveal the concentration of theoretical concepts, key words, and phrases, as depicted in the bar charts and hierarchy maps for this policy document.
     """)
 
 utils.line_break()
