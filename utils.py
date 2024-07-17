@@ -171,6 +171,7 @@ class CaseStudy:
     def plot_heatmap(self, pet_dict, choice, as_tups=False):
         ca_dict = self.get_ca_dict(f'./data/code_docs/{choice}/core_assumptions')
         docs = list(pet_dict.keys())
+        print(docs)
         color_scale = double_codes_color_mapping[choice]
 
         figs = []
