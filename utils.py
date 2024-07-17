@@ -77,7 +77,7 @@ case_studies = {
             "2022 National Defense Strategy",
             "2022 National Military Strategy",
             "2023 DoD Cyber Strategy Summary",
-            "2023 National Cyber Strategy"   
+            "2023 National Cybersecurity Strategy"   
         ]
 }
 
