@@ -13,7 +13,7 @@ with st.expander("Bubble Chart for Cases"):
 
 @st.cache_data
 def load_data_with_jitters():
-    bubble_df = pd.read_csv('./data/bubble_data0517.csv')
+    bubble_df = pd.read_csv('./data/bubble_data0717.csv')
     df_with_dates = pd.read_csv('./data/docs_with_dates.csv')
     bubble_df['year'] = pd.to_datetime(bubble_df.year)
     df_with_dates['date'] = pd.to_datetime(df_with_dates['date'])
@@ -24,15 +24,15 @@ def load_data_with_jitters():
     return merged
 bubble_df = load_data_with_jitters()
 
-csc = st.multiselect("Choose case studies", ['2011', '2015', '2018'], default=['2011', '2015', '2018'])
+csc = st.multiselect("Choose case studies", ['2011', '2015', '2018', '2023'], default=['2011', '2015', '2018', '2023'])
 
 if csc:
     fig = px.scatter(bubble_df[bubble_df.year.isin(csc)], x='date', y='category_jittered', size='count', color='code', color_discrete_map=utils.color_mapping_lower, hover_name='doc')
     fig.update_layout(
         xaxis=dict(
             # autorange=False,
-            tickvals=[2011, 2015],
-            ticktext=['2011', '2015', '2018'],
+            tickvals=[int(c) for c in csc],
+            ticktext=[c for c in csc],
             tick0=0,
             dtick=1
         )

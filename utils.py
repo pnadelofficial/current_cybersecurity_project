@@ -13,7 +13,7 @@ codes = [
     "constructivism", 
     "realism", 
     "cyberpersistence", 
-    "policy_engineering_tasks"
+    # "policy_engineering_tasks"
 ]
 
 color_mapping = {
@@ -70,6 +70,14 @@ case_studies = {
             "2018 National Cyber Strategy",
             "2018 National Defense Strategy Summary",
             "2018 National Military Strategy Description"
+        ],
+    '2023':
+        [
+            "2022 National Security Strategy",
+            "2022 National Defense Strategy",
+            "2022 National Military Strategy",
+            "2023 DoD Cyber Strategy Summary",
+            "2023 National Cyber Strategy"   
         ]
 }
 
@@ -160,7 +168,7 @@ class CaseStudy:
                 ca_dict[k.strip()] += v
         return ca_dict
     
-    def plot_heatmap(self, pet_dict, choice):
+    def plot_heatmap(self, pet_dict, choice, as_tups=False):
         ca_dict = self.get_ca_dict(f'./data/code_docs/{choice}/core_assumptions')
         docs = list(pet_dict.keys())
         color_scale = double_codes_color_mapping[choice]
@@ -181,7 +189,11 @@ class CaseStudy:
             if len(hm_data) == 0:
                 continue
             fig = px.imshow(hm_data, title=doc, text_auto=True, color_continuous_scale=color_scale)
-            figs.append(fig)
+            if as_tups:
+                fig.update_layout(yaxis_title=f'{choice} core assumptions'.title(), xaxis_title='policy engineering task'.title())
+                figs.append((doc, fig))
+            else:
+                figs.append(fig)
         return figs
 
     def plot_treemap(self, results, ps=None):
@@ -241,7 +253,7 @@ class CodeDoc:
         return title.strip(), 0
     
     def _collect_codes_hierarchy_bar(self):
-        self.ancestor = self.path.split('/')[-3]  
+        self.ancestor = self.path.split('/')[-3]
         self.parent = self.path.split('/')[-2]
         self.child = self.path.split('/')[-1].replace('.docx', '')
         

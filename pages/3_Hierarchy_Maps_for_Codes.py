@@ -48,9 +48,8 @@ st.divider()
 st.header("Compare Documents")
 with st.expander("Document Comparison"):
     st.write("The primary source document comparison function allows the viewer to compare coded language within a single strategic document, between strategic documents within a single case study, or among several documents across multiple cases.")
-# rev_doc_mapping = {v:k for k,v in utils.doc_mapping.items()}
+
 choices = st.multiselect("Choose documents to compare", list(utils.all_docs))
-# choices_rev = [rev_doc_mapping[c] for c in choices]
 if len(choices) > 0:
     if len(choices) < 3:
         cols = st.columns(len(choices))

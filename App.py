@@ -40,7 +40,7 @@ during this period appropriately applied the core assumptions and causal logic o
 featured in their language.
 """.strip())
 
-st.image("images/Screenshot 2024-03-26 at 8.58.06 AM.png")
+st.image("images/Screenshot 2024-07-16 at 9.17.50 AM.png")
 
 st.markdown('### Systematic Text Analysis') 
 st.markdown("""

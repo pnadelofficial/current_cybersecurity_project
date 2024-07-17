@@ -1,4 +1,5 @@
 import streamlit as st
+import utils
 
 st.title("Key Terms")
 
@@ -15,8 +16,14 @@ st.markdown("""
             5. implementation, 
             6. maintenance, and 
             7. policy review.
-    * **First Cylce/Phase I Coding**: The analytic process of tagging the text of primary source documents according to a preliminary list of theoretical concepts, key words, and phrases. 
+""")
+utils.line_break()
+st.markdown("""
+    * **First Cycle/Phase I Coding**: The analytic process of tagging the text of primary source documents according to a preliminary list of theoretical concepts, key words, and phrases. 
+""")
+st.image("images/Screenshot 2024-07-16 at 9.19.37 AM.png", caption="An example pf Phase I Coding in NVivo")
+
+st.markdown("""
     * **Second Cycle/Phase II Coding**: The analytic process of synthesizing, abstracting, and integrating coding concepts to derive deeper meaning from qualitative source data. 
 """)
-
-st.image("images/Screenshot 2024-03-26 at 8.58.06 AM.png")
+st.image("images/Screenshot 2024-07-16 at 9.19.37 AM.png", caption="An example pf Phase II Coding in NVivo")
