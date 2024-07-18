@@ -25,7 +25,7 @@ csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['
 poss_docs = {
     '2011': ['2011 International Strategy for Cyberspace', '2010 National Security Strategy'],
     '2015': ['2015 White House Report on Cyber Deterrence Policy', '2015 National Security Strategy'],
-    '2018': ['2018 National Cyber Strategy', '2018 National Cyber Strategy'],
+    '2018': ['2018 National Cyber Strategy', '2017 National Security Strategy'],
     '2023': ['2023 National Cybersecurity Strategy', '2022 National Security Strategy']
 }
 
