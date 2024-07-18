@@ -92,6 +92,10 @@ def plot_same_doc_on_row(docs, csc, choice):
                 st.plotly_chart(selected_figs[i + 2], theme="streamlit", use_container_width=True)
 
 if len(csc) > 0:
+    valid_docs = []
+    for c in csc:
+        valid_docs += poss_docs[c]
+
     if 'All' in csc:
         csc = list(utils.case_studies.keys())
     choice = st.selectbox("Choose code", utils.codes, format_func=lambda x: x.title())
@@ -103,5 +107,5 @@ if len(csc) > 0:
         tabs = st.tabs(['National Cyber Strategy', 'National Security Strategy'])
         for i, tab in enumerate(tabs):
             with tab:
-                docs = [poss_docs[k][i] for k in poss_docs.keys()]
+                docs = [poss_docs[k][i] for k in poss_docs.keys() if poss_docs[k][i] in valid_docs]
                 plot_same_doc_on_row(docs, csc, choice)
