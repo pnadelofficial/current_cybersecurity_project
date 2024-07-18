@@ -113,6 +113,7 @@ def get_pet_dict():
             _dict = read_doc_collect_codes(path)
             for k, v in _dict.items():
                 pet_dict[k] += v
+    print(list(pet_dict.keys()))
     return pet_dict
 
 def line_break(amt=2):
@@ -171,7 +172,7 @@ class CaseStudy:
     def plot_heatmap(self, pet_dict, choice, as_tups=False):
         ca_dict = self.get_ca_dict(f'./data/code_docs/{choice}/core_assumptions')
         docs = list(pet_dict.keys())
-        print(docs)
+        # print(docs)
         color_scale = double_codes_color_mapping[choice]
 
         figs = []
