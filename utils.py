@@ -113,6 +113,7 @@ def get_pet_dict():
             _dict = read_doc_collect_codes(path)
             for k, v in _dict.items():
                 pet_dict[k] += v
+    print(list(pet_dict.keys()))
     return pet_dict
 
 def line_break(amt=2):
