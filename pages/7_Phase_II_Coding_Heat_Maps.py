@@ -36,7 +36,6 @@ def plot_same_cs_on_row(csc, choice):
             cs = utils.CaseStudy(csc)
             pet_dict = utils.get_pet_dict()
             figs = cs.plot_heatmap(pet_dict, choice)
-            print(type(figs))
             if len(figs) == 1:
                 figs.append(None)
             if figs[i] is None:
@@ -93,6 +92,8 @@ def plot_same_doc_on_row(docs, csc, choice):
 
 if len(csc) > 0:
     valid_docs = []
+    if csc == ['All']:
+        csc = list(utils.case_studies.keys())
     for c in csc:
         valid_docs += poss_docs[c]
 

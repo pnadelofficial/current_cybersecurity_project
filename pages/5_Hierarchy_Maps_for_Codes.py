@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 import utils
 
 st.title("Hierarchy Maps for Codes")
@@ -14,33 +12,33 @@ with st.expander("Case Study Comparison"):
 
         The case study comparison function allows the viewer to evaluate coded language for the hierarchy of strategic documents associated with a single case study or compare across multiple cases.
     """)
-csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['All'])
+csc = st.multiselect("Choose case studies", list(utils.case_studies.keys()) + ['Combined'])
 if len(csc) > 0:
     if len(csc) < 3:
         cols = st.columns(len(csc))
         for i, col in enumerate(cols):
             with col:
-                if csc[i] == 'All':
+                if csc[i] == 'Combined':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
                 if isinstance(csc[i], str):
                     title = csc[i] + " Case Study" 
                 else: 
-                    title = "All case studies"
+                    title = "Combined case studies"
                 st.plotly_chart(cs.plot_treemap(results, ps=title),theme="streamlit", use_container_width=True)
     else:
         tabs = st.tabs(csc)
         for i, tab in enumerate(tabs):
             with tab:
-                if csc[i] == 'All':
+                if csc[i] == 'Combined':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_primary_source()
                 if isinstance(csc[i], str):
                     title = csc[i] + " Case Study" 
                 else: 
-                    title = "All case studies"
+                    title = "Combined case studies"
                 st.plotly_chart(cs.plot_treemap(results, ps=title),theme="streamlit", use_container_width=True)
 
 st.divider()

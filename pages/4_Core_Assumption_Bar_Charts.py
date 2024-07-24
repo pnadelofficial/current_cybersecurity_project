@@ -10,9 +10,9 @@ with st.expander("Case Study Comaprison"):
     st.write("""
         The bar charts below depict the aggregated number of text excerpts coded against theoretical Core Assumptions for all files within the selected case studies. This function allows the viewer to evaluate the use of core assumptions for the hierarchy of strategic documents associated with a single case study or compare across multiple cases.
     """.strip())
-csc = st.multiselect("Choose case studies", list(k.title() for k in utils.case_studies.keys()) + ['All'])
-code_choice = st.selectbox("Choose code", ['All']+utils.codes, format_func=lambda x: x.title().replace('_', ' ') if x != 'All' else 'All codes')
-code_choice = code_choice if code_choice != 'All' else None
+csc = st.multiselect("Choose case studies", list(k.title() for k in utils.case_studies.keys()) + ['Combined'])
+code_choice = st.selectbox("Choose code", ['Combined']+utils.codes, format_func=lambda x: x.title().replace('_', ' ') if x != 'All' else 'All codes')
+code_choice = code_choice if code_choice != 'Combined' else None
 with st.expander("Individual Code Comparison"):
     st.write("""
         The bar charts below depict the number of text excerpts coded against Core Assumption codes for each theoretical paradigm. This function allows the viewer to compare the use of theoretical Core Assumptions across individual cases or files.
@@ -22,7 +22,7 @@ if len(csc) > 0:
         cols = st.columns(len(csc))
         for i, col in enumerate(cols):
             with col:
-                if csc[i] == 'All':
+                if csc[i] == 'Combined':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_core_assumption_primary_source(code_choice=code_choice)
@@ -35,7 +35,7 @@ if len(csc) > 0:
                     if code_choice:
                         title = code_choice.title() + " in all case studies"
                     else:
-                        title = "All Case Studies"
+                        title = "Combined Case Studies"
                 fig = cs.plot_bar_chart(results, title=title)
                 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
                 st.plotly_chart(fig,theme="streamlit", use_container_width=True)
@@ -43,7 +43,7 @@ if len(csc) > 0:
         tabs = st.tabs(csc)
         for i, tab in enumerate(tabs):
             with tab:
-                if csc[i] == 'All':
+                if csc[i] == 'Combined':
                     csc[i] = list(utils.case_studies.keys())
                 cs = utils.CaseStudy(csc[i])
                 results = cs._get_number_of_codes_by_core_assumption_primary_source(code_choice=code_choice)
@@ -56,7 +56,7 @@ if len(csc) > 0:
                     if code_choice:
                         title = code_choice.title() + " in all case studies"
                     else:
-                        title = "All Case Studies"
+                        title = "Combined Case Studies"
                 fig = cs.plot_bar_chart(results, title=title)
                 fig.update_layout(yaxis={"dtick":1},margin={"t":100,"b":100},height=1100)
                 st.plotly_chart(fig,theme="streamlit", use_container_width=True)

@@ -27,7 +27,7 @@ bubble_df = load_data_with_jitters()
 csc = st.multiselect("Choose case studies", ['2011', '2015', '2018', '2023'], default=['2011', '2015', '2018', '2023'])
 
 if csc:
-    fig = px.scatter(bubble_df[bubble_df.year.isin(csc)], x='date', y='category_jittered', size='count', color='code', color_discrete_map=utils.color_mapping_lower, hover_name='doc')
+    fig = px.scatter(bubble_df[bubble_df.year.isin(csc)], x='date', y='category_jittered', size='count', color='code', color_discrete_map=utils.color_mapping_lower, hover_data=['code', 'count'], hover_name='doc')
     fig.update_layout(
         xaxis=dict(
             # autorange=False,

@@ -35,7 +35,7 @@ color_mapping_lower = {
 double_codes_color_mapping = {
     "liberalism": "greens",
     "constructivism": "blues",
-    "realism": "rdgy",
+    "realism": ["rgb(125, 0, 0)", "rgb(244, 165, 130)", "rgb(220, 220, 220)", "rgb(186, 186, 186)", "rgb(64, 64, 64)"], # "rdgy",
     "cyberpersistence":"brwnyl"
 }
 
