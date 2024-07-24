@@ -17,7 +17,8 @@ NMS,2018-01-01,2018 National Military Strategy Description,liberalism,10
 QDR_NDS,2023-01-01,2022 National Defense Strategy,liberalism,137
 NMS,2023-01-01,2022 National Military Strategy,liberalism,17
 NSS,2023-01-01,2022 National Security Strategy,liberalism,606
-DoD,,2023 DoD Cyber Strategy Summary,liberalism,48
+DoD,2023-01-01,2023 DoD Cyber Strategy Summary,liberalism,48
+NCS,2023-01-01,2023 National Cybersecurity Strategy,liberalism,199
 NSS,2011-01-01,2010 National Security Strategy,constructivism,301
 NCS,2011-01-01,2011 International Strategy for Cyberspace,constructivism,197
 NMS,2011-01-01,2011 National Military Strategy,constructivism,29
@@ -27,6 +28,7 @@ NSS,2015-01-01,2015 National Security Strategy,constructivism,186
 NSS,2018-01-01,2017 National Security Strategy,constructivism,184
 NCS,2018-01-01,2018 National Cyber Strategy,constructivism,101
 NSS,2023-01-01,2022 National Security Strategy,constructivism,232
+NCS,2023-01-01,2023 National Cybersecurity Strategy,constructivism,76
 QDR_NDS,2011-01-01,2010 Quadrennial Defense Review,constructivism,0
 DoD,2011-01-01,2011 DoD Cyber Strategy,constructivism,11
 NCS,2015-01-01,2015 White House Report on Cyber Deterrence Policy,constructivism,34
@@ -35,7 +37,7 @@ QDR_NDS,2015-01-01,2014 Quadrennial Defense Review,constructivism,2
 QDR_NDS,2023-01-01,2022 National Defense Strategy,constructivism,24
 QDR_NDS,2018-01-01,2018 National Defense Strategy Summary,constructivism,13
 NMS,2023-01-01,2022 National Military Strategy,constructivism,4
-DoD,,2023 DoD Cyber Strategy Summary,constructivism,11
+DoD,2023-01-01,2023 DoD Cyber Strategy Summary,constructivism,11
 NSS,2011-01-01,2010 National Security Strategy,realism,125
 QDR_NDS,2011-01-01,2010 Quadrennial Defense Review,realism,59
 NCS,2011-01-01,2011 International Strategy for Cyberspace,realism,46
@@ -51,7 +53,8 @@ NMS,2018-01-01,2018 National Military Strategy Description,realism,20
 QDR_NDS,2023-01-01,2022 National Defense Strategy,realism,201
 NMS,2023-01-01,2022 National Military Strategy,realism,50
 NSS,2023-01-01,2022 National Security Strategy,realism,266
-DoD,,2023 DoD Cyber Strategy Summary,realism,25
+DoD,2023-01-01,2023 DoD Cyber Strategy Summary,realism,25
+NCS,2023-01-01,2023 National Cybersecurity Strategy,realism,26
 DoD,2011-01-01,2011 DoD Cyber Strategy,realism,19
 NSS,2015-01-01,2015 National Security Strategy,realism,87
 QDR_NDS,2018-01-01,2018 National Defense Strategy Summary,realism,99
@@ -68,7 +71,8 @@ NCS,2018-01-01,2018 National Cyber Strategy,cyberpersistence,26
 QDR_NDS,2018-01-01,2018 National Defense Strategy Summary,cyberpersistence,15
 QDR_NDS,2023-01-01,2022 National Defense Strategy,cyberpersistence,56
 NSS,2023-01-01,2022 National Security Strategy,cyberpersistence,30
-DoD,,2023 DoD Cyber Strategy Summary,cyberpersistence,29
+NCS,2023-01-01,2023 National Cybersecurity Strategy,cyberpersistence,87
+DoD,2023-01-01,2023 DoD Cyber Strategy Summary,cyberpersistence,29
 NMS,2018-01-01,2018 National Military Strategy Description,cyberpersistence,10
 NMS,2023-01-01,2022 National Military Strategy,cyberpersistence,6
 DoD,2018-01-01,2018 DoD Cyber Strategy Summary,cyberpersistence,30

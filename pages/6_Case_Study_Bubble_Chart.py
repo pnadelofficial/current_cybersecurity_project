@@ -23,6 +23,7 @@ def load_data_with_jitters():
     merged = pd.merge(bubble_df, df_with_dates, on='doc')
     return merged
 bubble_df = load_data_with_jitters()
+print(bubble_df.doc.value_counts())
 
 csc = st.multiselect("Choose case studies", ['2011', '2015', '2018', '2023'], default=['2011', '2015', '2018', '2023'])
 
@@ -37,7 +38,7 @@ if csc:
             dtick=1
         )
     )
-    fig.update_yaxes(tickvals=[0, 1, 2, 3, 4], ticktext=['NSS', 'NCS', 'QDR_NDS', 'NMS', 'DoD'])
+    fig.update_yaxes(tickvals=[0, 1, 2, 3, 4], ticktext=['DoD', 'NCS', 'NMS', 'NSS', 'QDR_NDS'])
     fig.update_layout(yaxis_title='Document Class')
     fig.update_layout(xaxis_title='Date')
     st.plotly_chart(fig, use_container_width=True) 
