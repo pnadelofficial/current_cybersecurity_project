@@ -6,6 +6,8 @@ st.title("Phase II Coding Heat Maps")
 with st.expander("Second Cycle / Phase II Coding "):
     st.write("""
         A Phase II coding technique was applied to national policy documents to identify instances of interaction between Policy Engineering Tasks 1 and 2 (National Interests and Objectives) and the core assumptions of various theoretical paradigms. This interaction represents the operationalization of the first step of the research methodology, which is designed to assess alignment between theory and practice in cybersecurity.
+             
+        This Phase II coding treatment was only applied to the National Security Strategy and National Cyber Strategy (or equivalent) for each case study because these documents are the vehicles through which the administration articulates national interests and objectives. The one exception is the 2015 White House Report on Cyber Deterrence Policy, as notated below.
 
         Alignment occurs when enough core assumptions of a theory match the assumptions identified in a national policy, such that the theory has prescriptive power in judging what a policy or strategy should be and what implementation will look like. 
 
@@ -42,7 +44,7 @@ def plot_same_cs_on_row(csc, choice):
                 utils.line_break(1)
                 container = st.container(border=False)
                 if poss_docs[csc][0] == "2015 White House Report on Cyber Deterrence Policy":
-                    text = f"<b>{poss_docs[csc][i]}</b> This national-level policy document is the outlier among the four case studies. Because it is not written as a National Cyber Strategy, it does not articulate national interests and objectives in a way that lends the document to the Phase II Coding technique. Phase I Coding, however, does reveal the concentration of theoretical concepts, key words, and phrases, as depicted in the bar charts and hierarchy maps for this policy document." # how to get correct index for csc
+                    text = "<b>2015 White House Report on Cyber Deterrence Policy</b> This national-level policy document is the outlier among the four case studies. Because it is not written as a National Cyber Strategy, it does not articulate national interests and objectives in a way that lends the document to the Phase II Coding technique. Phase I Coding, however, does reveal the concentration of theoretical concepts, key words, and phrases, as depicted in the bar charts and hierarchy maps for this policy document." # how to get correct index for csc
                 else:
                     text = f"<b>{poss_docs[csc][i]}</b> for the code <b>{choice.title()}</b> does not have enough data to plot"
                 container.markdown(f"<div style='text-align: center;'>{text}</div>", unsafe_allow_html=True)
