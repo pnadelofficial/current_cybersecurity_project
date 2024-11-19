@@ -113,7 +113,6 @@ def get_pet_dict():
             _dict = read_doc_collect_codes(path)
             for k, v in _dict.items():
                 pet_dict[k] += v
-    print(list(pet_dict.keys()))
     return pet_dict
 
 def line_break(amt=2):
@@ -151,12 +150,14 @@ class CaseStudy:
                             cd = CodeDoc(os.path.join(root, file), self.year, purpose='hierarchy_map')
                             codes_by_ps = cd()
                             for _, tup in codes_by_ps.items():
-                                results.append((cd.ancestor, cd.parent, cd.child, tup[-1]))
+                                if cd.parent != 'core_assumptions':
+                                    results.append((cd.ancestor, cd.parent, cd.child, tup[-1]))
                     if file.endswith('.docx') and (file not in top_level): # deal with top level codes
                         cd = CodeDoc(os.path.join(root, file), self.year, purpose='hierarchy_map')
                         codes_by_ps = cd()
                         total = sum([tup[-1] for title, tup in codes_by_ps.items() if title == ps])
-                        results.append((cd.ancestor, cd.parent, cd.child, total))
+                        if cd.parent != 'core_assumptions':
+                            results.append((cd.ancestor, cd.parent, cd.child, total))
         return results
     
     def _get_number_of_codes_by_core_assumption_primary_source(self, ps=None, code_choice=None):
@@ -271,7 +272,7 @@ class CodeDoc:
             title = title_check.group(1)
         else:
             return None
-        m = re.search(r'§ (\d+) references coded', chunk)
+        m = re.search(r'§ (\d+) references? coded', chunk)
         if m:
             return title.strip(), int(m.group(1))
         return title.strip(), 0
