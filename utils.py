@@ -150,14 +150,12 @@ class CaseStudy:
                             cd = CodeDoc(os.path.join(root, file), self.year, purpose='hierarchy_map')
                             codes_by_ps = cd()
                             for _, tup in codes_by_ps.items():
-                                if cd.parent != 'core_assumptions':
-                                    results.append((cd.ancestor, cd.parent, cd.child, tup[-1]))
+                                results.append((cd.ancestor, cd.parent, cd.child, tup[-1]))
                     if file.endswith('.docx') and (file not in top_level): # deal with top level codes
                         cd = CodeDoc(os.path.join(root, file), self.year, purpose='hierarchy_map')
                         codes_by_ps = cd()
                         total = sum([tup[-1] for title, tup in codes_by_ps.items() if title == ps])
-                        if cd.parent != 'core_assumptions':
-                            results.append((cd.ancestor, cd.parent, cd.child, total))
+                        results.append((cd.ancestor, cd.parent, cd.child, total))
         return results
     
     def _get_number_of_codes_by_core_assumption_primary_source(self, ps=None, code_choice=None):
